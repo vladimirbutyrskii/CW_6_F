@@ -14,3 +14,4 @@ class ModeratorMailingSettingsForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = MailingSettings
         fields = ('status',)
+

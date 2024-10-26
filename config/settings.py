@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    "django_apscheduler",
     'mailings',
     'users',
     'blog',
@@ -139,7 +140,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'users.User'
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = reverse_lazy('users:login')
 LOGOUT_REDIRECT_URL = '/'
 
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
