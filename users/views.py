@@ -19,7 +19,7 @@ class UserCreateView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        user.is_activ = False
+        user.is_active = False
         token = secrets.token_hex(16)
         user.token = token
         user.save()

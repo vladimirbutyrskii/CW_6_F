@@ -4,12 +4,11 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
 from blog.services import get_articles_from_cache
-from mailings.forms import MailingSettingsForm, ModeratorMailingSettingsForm
+from mailings.forms import MailingSettingsForm, ModeratorMailingSettingsForm, ClientForm
 from mailings.models import Client, MailingSettings, Log
 
 
 class HomePageView(TemplateView):
-
     template_name = 'mailings/home_page.html'
 
     def get_context_data(self, **kwargs):
@@ -30,11 +29,13 @@ class ClientListView(ListView):
 
 class ClientDetailView(DetailView):
     model = Client
+    form_class = ClientForm
 
 
 class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
-    fields = ('name', 'email', 'comment')
+    form_class = ClientForm
+    # fields = ('name', 'email', 'comment')
     success_url = reverse_lazy('mailings:client_list')
 
     def form_valid(self, form):
@@ -47,7 +48,8 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
 
 class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
-    fields = ('name', 'email', 'comment')
+    form_class = ClientForm
+    # fields = ('name', 'email', 'comment')
     success_url = reverse_lazy('mailings:client_list')
 
 
@@ -66,7 +68,8 @@ class MailingSettingsDetailView(DetailView):
 
 class MailingSettingsCreateView(LoginRequiredMixin, CreateView):
     model = MailingSettings
-    fields = ('client', 'start_time', 'end_time', 'periodicity', 'status', 'title', 'text')
+    form_class = MailingSettingsForm
+    # fields = ('client', 'start_time', 'end_time', 'periodicity', 'status', 'title', 'text')
     success_url = reverse_lazy('mailings:mailingsettings_list')
 
     def form_valid(self, form):
@@ -82,6 +85,7 @@ class MailingSettingsCreateView(LoginRequiredMixin, CreateView):
 
 class MailingSettingsUpdateView(LoginRequiredMixin, UpdateView):
     model = MailingSettings
+    form_class = MailingSettingsForm
     success_url = reverse_lazy('mailings:mailingsettings_list')
 
     def get_form_class(self):

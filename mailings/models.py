@@ -8,6 +8,7 @@ NULLABLE = {'null': True, 'blank': True}
 class Client(models.Model):
     name = models.CharField(max_length=50, verbose_name='Имя')
     email = models.EmailField(max_length=50, verbose_name='email', unique=True)
+    avatar = models.ImageField(upload_to="avatar/", verbose_name="Аватар", **NULLABLE, help_text="Загрузите Аватар")
     comment = models.TextField(verbose_name='Комментарии', **NULLABLE)
     owner = models.ForeignKey(User, verbose_name='Владелец', on_delete=models.SET_NULL, **NULLABLE)
 

@@ -1,6 +1,6 @@
 from django import forms
 
-from mailings.models import MailingSettings
+from mailings.models import MailingSettings, Client
 from users.forms import StyleFormMixin
 
 
@@ -15,3 +15,8 @@ class ModeratorMailingSettingsForm(StyleFormMixin, forms.ModelForm):
         model = MailingSettings
         fields = ('status',)
 
+
+class ClientForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = "__all__"
